@@ -1,0 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap");
+
+$main_font: "Roboto", sans-serif;
+$fontsizes: (
+  "main": 62.5%,
+  "size1": 1.6rem,
+  "size2": 1.4rem,
+  "size3": 1.2rem,
+  "size4": 1.8rem,
+  "size5": 2.4rem,
+);
+$colors: (
+  "first": #2548bd,
+  "second": #2f5beb,
+  "highlight": #619e18,
+  "light": #fff,
+  "dark": #36426b,
+  "error": #c70d0d,
+  "warning": #d68206,
+  "info": #2679bd,
+  "success": #619e18,
+  "bgerror": #eb6946,
+  "bgwarning": #f7e43c,
+  "bginfo": #5aa4e0,
+  "bgsuccess": #7de798,
+);
+
+$shadow_default: 0 0 2px 2px rgba(#333, 0.25);
+//Margin - Padding
+$gutter: 32px;
+$section_margin: 30px;
+$title_margin: 20px;
+$micro_space: 5px;
+$smaller_space: 7px;
+$small_space: 10px;
+$medium_space: 15px;
+$medium_space2: 20px;
+$medium_space3: 25px;
+$medium_space4: 30px;
+$large_space1: 40px;
+
+@mixin fontsize($size) {
+  font-size: map-get($fontsizes, $size);
+}
+@mixin bgcolor($color) {
+  background-color: map-get($colors, $color);
+}
+@mixin bordercolor($color) {
+  border-color: map-get($colors, $color);
+}
+@mixin textcolor($color) {
+  color: map-get($colors, $color);
+}

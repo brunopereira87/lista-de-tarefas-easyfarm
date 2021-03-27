@@ -1,32 +1,48 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <TheHeader />
+    <main>
+      <div class="container">
+        <Tasks />
+      </div>
+    </main>
   </div>
 </template>
-
+<script>
+import Tasks from './views/Tasks';
+import TheHeader from './components/TheHeader';
+export default {
+  components:{
+    Tasks,
+    TheHeader
+  }
+}
+</script>
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: $main_font;
+}
+html{
+  @include fontsize("main");
+}
+body{
+  @include textcolor("dark");
+  @include fontsize("size2");
+
 }
 
-#nav {
-  padding: 30px;
+.page-title{
+  margin-top: $section_margin;
+  margin-bottom: $medium_space2;
+  text-align: center;
+  @include fontsize('size5');
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.container{
+  padding: $medium_space2;
+  width: 100%;
 }
 </style>
