@@ -1,6 +1,6 @@
 <template>
   <div class="modal">
-    <button class="btn-icon" @click="$store.commit('UPDATE_OPEN_MODAL', false)">
+    <button class="btn-icon" @click="() => $emit('close')">
       <i class="fas fa-times-circle"></i>
     </button>
     <slot></slot>

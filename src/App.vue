@@ -15,6 +15,12 @@ export default {
   components:{
     Tasks,
     TheHeader
+  },
+
+  mounted(){
+    window.onresize = () => {
+      this.$store.commit('UPDATE_WINDOW_WIDTH',window.innerWidth)
+    }
   }
 }
 </script>
@@ -44,5 +50,12 @@ body{
 .container{
   padding: $medium_space2;
   width: 100%;
+}
+
+@media(min-width:768px){
+  .container{
+    max-width: 900px;
+    margin: 0 auto;
+  }
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
-  <div class="task">
-    <input type="checkbox" @change="changeStatus" :checked="task.status === 'Concluído'">
+  <div class="task" :class="{ done: task.status == 'done'}" >
+    <input type="checkbox" @change="changeStatus" :checked="task.status === 'done'">
     <div class="task-info">
       <p class="name"><strong>{{task.name}}</strong></p>
       <p class="project">{{task.project}}</p>
@@ -25,11 +25,22 @@
 
 <script>
 import moment from 'moment';
+import TaskService from '@/taskService';
+
 export default {
   name: 'TaskItem',
   props:['task'],
   methods: {
-    changeStatus(){}
+    changeStatus(){
+      if(this.task.status == 'pending'){
+        this.task.status = 'done'
+      }else if(this.task.status == 'done'){
+        this.task.status = 'pending'
+      }
+
+      TaskService.updateTask(this.task);
+      this.$emit('changeStatus');
+    }
   },
   computed: {
     deadline(){
@@ -65,6 +76,9 @@ input[type=checkbox]{
   box-shadow: $shadow_default;
   padding: $small_space;
   margin-bottom: $medium_space2;
+  &.done{
+    opacity: .7;
+  }
 }
 .task-info{
   margin-right: auto;
@@ -115,4 +129,5 @@ input[type=checkbox]{
     @include textcolor("light");
   }
 }
+
 </style>

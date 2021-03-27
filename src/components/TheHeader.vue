@@ -25,6 +25,9 @@ header{
   @include bgcolor("first");
   display: flex;
   align-items: center;
+  .container {
+    padding: 0 20px;
+  }
 }
 
 .logo {

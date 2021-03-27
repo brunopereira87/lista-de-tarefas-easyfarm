@@ -2,10 +2,10 @@
   <div class="task-form" :class="{mobile: mobile}">
     <h2>{{previous_task ? 'Editar ': 'Criar '}} Tarefa</h2>
     <form @submit.prevent="saveTask">
-      <Input type="text" name="name" label="Nome" v-model="task.name" :v="$v.task.name" />
-      <Input type="text" name="project" label="Projeto" v-model="task.project" />
-      <Input type="date" name="deadline" label="Data de conclusão" v-model="task.deadline" />
-      <Button :disabled="$v.$invalid">Enviar</Button>
+      <Input type="text" name="name" label="Nome" v-model="form.name" :v="$v.form.name" />
+      <Input type="text" name="project" label="Projeto" v-model="form.project" />
+      <Input type="date" name="deadline" label="Data de conclusão" v-model="form.deadline" />
+      <Button :disabled="$v.$invalid" type="primary">Enviar</Button>
     </form>
   </div>
 </template>
@@ -25,7 +25,7 @@ export default {
   },
   data() {
     return {
-      task: {
+      form: {
         name: null,
         status: 'pending',
         project: null,
@@ -35,11 +35,16 @@ export default {
   },
   created(){
     if(this.previous_task){
-      this.task = this.previous_task
+      this.form = this.previous_task
+    }
+  },
+  updated(){
+    if(this.previous_task){
+      this.form = this.previous_task
     }
   },
   validations:{
-    task: {
+    form: {
       name: { required }
     }
   },
@@ -47,14 +52,24 @@ export default {
     saveTask(){
       if(!this.$v.invalid){
         if(this.previous_task){
-
+          TaskService.updateTask(this.form)
         }else {
-          TaskService.createTask(this.task);
+          TaskService.createTask(this.form);
         }
       }
-
-      this.$emit('updateTasksList');
-      this.$store.commit('UPDATE_OPEN_MODAL',false);
+      this.cleanTask();
+      
+      this.$emit('refreshTasks');
+    },
+    cleanTask(){
+      this.form = {
+        name: null,
+        status: 'pending',
+        project: null,
+        deadline: null
+      }
+      
+      this.$v.$reset();
     }
   }
 }
@@ -77,6 +92,13 @@ export default {
 .mobile {
   h2{
     text-align: center;
+  }
+}
+
+@media(min-width: 768px){
+  .task-form{
+    width: 100%;
+    padding-left: 0;
   }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <button @click="$emit('clicked')" class="button" :disabled="disabled" :class="{disabled: disabled}">
+  <button @click="$emit('clicked')" class="button" :disabled="disabled" :class="[type, {disabled: disabled}]">
     <slot></slot>
   </button>
 </template>
@@ -7,7 +7,7 @@
 <script>
 export default {
   name: "Button",
-  props:["disabled"]
+  props:["disabled","type"]
 }
 </script>
 
@@ -17,7 +17,6 @@ export default {
   cursor: pointer;
   border: none;
   border-radius: 0.4rem;
-  @include bgcolor('first');
   @include textcolor('light');
   min-width: 8rem;
   padding: 0.8rem 1.2rem;
@@ -29,7 +28,16 @@ export default {
     opacity: 0.7;
     cursor: not-allowed;
   }
+
+  &.primary{
+    @include bgcolor('first');
+  }
+
+  &.danger{
+    @include bgcolor('bgerror');
+  }
 }
+
 
 .button:hover,
 .button:focus{
