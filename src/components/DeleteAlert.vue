@@ -23,7 +23,7 @@ export default {
   @include bgcolor("light");
   padding: $medium_space;
   width: 80%;
-
+  max-width: 400px;
   h4{
     text-align: center;
   }

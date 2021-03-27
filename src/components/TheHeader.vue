@@ -1,20 +1,12 @@
 <template>
   <header>
-    <div class="container">
-      <h1 class="logo">
-        <Logo />
-      </h1>
-    </div>
   </header>
 </template>
 
 <script>
-import Logo from './Logo';
+
 export default {
-  name: 'TheHeader',
-  components: {
-    Logo
-  }
+  name: 'TheHeader'
 }
 </script>
 
@@ -30,8 +22,4 @@ header{
   }
 }
 
-.logo {
-  width: 2rem;
-  height: 2rem;
-}
 </style>
