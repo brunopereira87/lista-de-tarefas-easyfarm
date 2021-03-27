@@ -4,8 +4,9 @@ Projeto criado utilizando o framework VueJS como teste de desenvolvimento para v
 
 ## Requisitos para rodar o projeto
 
--NPM
--VUE CLI
+NPM
+
+VUE CLI
 
 ## Instalação
 
